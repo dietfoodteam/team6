@@ -2,6 +2,10 @@
 
 担当メンター:長尾准誠
 
+Haruno Seki
+Yasunori Tomioka
+Hirokazu Kitada
+
 ## Project setup
 ```
 npm install
