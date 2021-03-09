@@ -1,5 +1,7 @@
 # dietfood
 
+担当メンター:長尾准誠
+
 ## Project setup
 ```
 npm install
