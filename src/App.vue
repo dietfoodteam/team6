@@ -10,7 +10,7 @@
     </div>
     <div v-else>
       <button v-on:click="signOut">さいんアウト</button>
-      {{ user.displayName }}
+      {{ user }}
     </div>
   </div>
 </template>
@@ -32,20 +32,16 @@ export default {
     signOut() {
       firebase.auth().signOut();
     },
-    // updateUserName() {
-    //   // ...
-    //   this.$store.dispatch("updateUserProfile", {
-    //     name: this.inputName,
-    //   });
-    // },
   },
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.user = user;
+        // this.$store.dispatch("setUser", user);
       } else {
-        // サインアウト中
         this.user = null;
+        // サインアウト中
+        // this.$store.dispatch("setUser", undefined);
       }
     });
   },
