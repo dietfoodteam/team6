@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
     <h1>log-in</h1>
     <div v-if="!user">
       <button v-on:click="signIn">
@@ -12,13 +11,20 @@
       <button v-on:click="signOut">さいんアウト</button>
       {{ user }}
     </div>
+    <Post></Post>
+    <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
+
+    <!-- <router-view /> -->
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
+import Post from "./views/Post"
 
 export default {
+  components: { Post },
   data() {
     return {
       user: null,
@@ -47,7 +53,6 @@ export default {
   },
 };
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -55,6 +60,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+/* #nav {
+  padding: 30px;
+} */
+
+/* #nav a {
+  font-weight: bold;
+  color: #2c3e50;
+} */
+
+/* #nav a.router-link-exact-active {
+  color: #42b983;
+} */
 </style>
