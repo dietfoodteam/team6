@@ -18,7 +18,9 @@
         </select>
       </div>
       <div v-for="item in items" :key="item.id">
-        {{ item.title }}
+        <span v-if="closeSeg == item.seg">
+          <ClosetItem v-bind:item="item"></ClosetItem>
+        </span>
       </div>
     </div>
     <div class="box">
@@ -29,11 +31,15 @@
 
 <script>
 import firebase from "firebase"
-
+import ClosetItem from "../components/ClosetItem"
 export default {
+  components: {
+    ClosetItem,
+  },
   data() {
     return {
       items: [],
+      closeSeg: 0,
     }
   },
   methods: {},
