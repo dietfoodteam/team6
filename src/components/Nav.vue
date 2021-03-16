@@ -2,7 +2,7 @@
   <div id="app">
     <div id="Nav">
       <div id="Bar">
-        <router-link to="/Closet" id="clo">Closet</router-link> |
+        <router-link to="/Closet" id="closet">Closet</router-link> |
         <router-link to="/Post" id="po">Post</router-link> |
       </div>
       <router-view />
@@ -25,7 +25,5 @@
   justify-content: center;
   width: 500px;
   height: 100px;
-}
-#clo {
 }
 </style>
