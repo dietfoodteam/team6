@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Post from "../views/Post.vue"
+import Closet from "../views/Closet.vue"
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/Post",
     name: "Post",
     component: Post,
+  },
+  {
+    path: "/Closet",
+    name: "Closet",
+    component: Closet,
   },
 ]
 

@@ -98,6 +98,11 @@ export default {
 </script>
 
 <style>
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .flex-container {
   display: flex;
   flex-direction: row;

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Nav></Nav>
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>log-in</h1>
     <div v-if="!user">
@@ -20,58 +21,36 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase"
 import Post from "./views/Post"
-
+import Nav from "@/components/Nav.vue"
 export default {
-  components: { Post },
+  components: { Post, Nav },
   data() {
     return {
       user: null,
-    };
+    }
   },
   methods: {
     signIn() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider);
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithPopup(provider)
     },
     signOut() {
-      firebase.auth().signOut();
+      firebase.auth().signOut()
     },
   },
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.user = user;
+        this.user = user
         // this.$store.dispatch("setUser", user);
       } else {
-        this.user = null;
+        this.user = null
         // サインアウト中
         // this.$store.dispatch("setUser", undefined);
       }
-    });
+    })
   },
-};
-</script>
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
-
-/* #nav {
-  padding: 30px;
-} */
-
-/* #nav a {
-  font-weight: bold;
-  color: #2c3e50;
-} */
-
-/* #nav a.router-link-exact-active {
-  color: #42b983;
-} */
-</style>
+</script>
