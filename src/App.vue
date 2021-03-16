@@ -1,33 +1,55 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-<h1>log-in</h1>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>log-in</h1>
+    <div v-if="!user">
+      <button v-on:click="signIn">
+        サインイン
+      </button>
+    </div>
+    <div v-else>
+      <button v-on:click="signOut">さいんアウト</button>
+      {{ user.displayName }}
+    </div>
   </div>
-
-  
 </template>
 
 <script>
+import firebase from "firebase";
 
 export default {
   data() {
     return {
-      inputName: ""
-    }
+      user: null,
+    };
   },
   methods: {
-     updateUserName() {
-      // ...
-      this.$store.dispatch("updateUserProfile", {
-        name: this.inputName
-      })
+    signIn() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider);
     },
+    signOut() {
+      firebase.auth().signOut();
+    },
+    // updateUserName() {
+    //   // ...
+    //   this.$store.dispatch("updateUserProfile", {
+    //     name: this.inputName,
+    //   });
+    // },
   },
-}
-
-
-
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      } else {
+        // サインアウト中
+        this.user = null;
+      }
+    });
+  },
+};
 </script>
 
 <style>
