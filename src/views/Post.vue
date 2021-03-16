@@ -12,13 +12,13 @@
         <input type="text" placeholder="洋服のタイトル" v-model="closeTitle" />
         <select id="occupation" name="occupation" v-model="closeSeg">
           <option value="" selected="selected">洋服の種類</option>
-          <option value="1">トップス</option>
-          <option value="2">ボトムス</option>
-          <option value="3">靴下</option>
-          <option value="4">部屋着</option>
-          <option value="5">くつ</option>
-          <option value="6">アクセサリー</option>
-          <option value="7">その他</option>
+          <option value="tops">トップス</option>
+          <option value="bottoms">ボトムス</option>
+          <option value="socks">靴下</option>
+          <option value="room-wear">部屋着</option>
+          <option value="shoes">くつ</option>
+          <option value="accessory">アクセサリー</option>
+          <option value="other">その他</option>
         </select>
       </div>
       洋服の説明
@@ -39,8 +39,14 @@
 import firebase from "firebase"
 
 export default {
-  date() {
-    return {}
+  data() {
+    return {
+      closeTitle: "",
+      closeSeg: "",
+      closeExp: "",
+      boughtDate: "",
+      boughtShop: "",
+    }
   },
   methods: {
     regist: function() {
