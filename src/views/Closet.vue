@@ -1,8 +1,23 @@
 <template>
   <div class="all">
     <div class="box">
-      <div class="title">アウター</div>
-      <div v-for="item in items" :key="item.id" v-on:click="detail">
+      <div class="title">
+        <select
+          id="occupation"
+          name="occupation"
+          v-model="closeSeg"
+          class="title"
+        >
+          <option value="1">トップス</option>
+          <option value="2">ボトムス</option>
+          <option value="3">靴下</option>
+          <option value="4">部屋着</option>
+          <option value="5">くつ</option>
+          <option value="6">アクセサリー</option>
+          <option value="7">その他</option>
+        </select>
+      </div>
+      <div v-for="item in items" :key="item.id">
         {{ item.title }}
       </div>
     </div>
@@ -16,10 +31,12 @@
 import firebase from "firebase"
 
 export default {
-  data() {},
-  methods: {
-    detail() {},
+  data() {
+    return {
+      items: [],
+    }
   },
+  methods: {},
   created() {
     firebase
       .firestore()
@@ -60,5 +77,6 @@ export default {
   margin: 10px;
   display: flex;
   justify-content: center;
+  overflow: scroll;
 }
 </style>
