@@ -18,6 +18,7 @@
         </select>
       </div>
       <div v-for="item in items" :key="item.id">
+        <span v-if="closeSeg == item.seg"></span>
         {{ item.title }}
       </div>
     </div>
