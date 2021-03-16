@@ -64,6 +64,11 @@ export default {
 </script>
 
 <style>
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 #register {
   font-family: fantasy;
   color: #524f4c;
