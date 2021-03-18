@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <div class="box">
+    <div class="frame">
       <div class="title">
         <select
           id="occupation"
@@ -8,23 +8,36 @@
           v-model="closeSeg"
           class="title"
         >
-          <option value="1">トップス</option>
-          <option value="2">ボトムス</option>
-          <option value="3">靴下</option>
-          <option value="4">部屋着</option>
-          <option value="5">くつ</option>
-          <option value="6">アクセサリー</option>
-          <option value="7">その他</option>
+          <option value="tops">トップス</option>
+          <option value="bottoms">ボトムス</option>
+          <option value="socks">靴下</option>
+          <option value="room-wear">部屋着</option>
+          <option value="shoes">くつ</option>
+          <option value="accessory">アクセサリー</option>
+          <option value="other">その他</option>
         </select>
       </div>
-      <div v-for="item in items" :key="item.id">
-        <span v-if="closeSeg == item.seg">
-          <ClosetItem v-bind:item="item"></ClosetItem>
-        </span>
+      <div v-on:click="getImages">更新</div>
+      <div class="box">
+        <div v-for="item in items" :key="item.id">
+          <span v-if="closeSeg == item.seg">
+            <div class="list">
+              <ul>
+                <li>
+                  <ClosetItem v-bind:item="item"></ClosetItem>
+                  <button v-on:click="delate">削除</button>
+                  <button>編集</button>
+                </li>
+              </ul>
+            </div>
+          </span>
+        </div>
       </div>
     </div>
-    <div class="box">
+
+    <div class="frame">
       <div class="title">コーデ</div>
+      <div class="box"></div>
     </div>
   </div>
 </template>
@@ -32,6 +45,7 @@
 <script>
 import firebase from "firebase"
 import ClosetItem from "../components/ClosetItem"
+
 export default {
   components: {
     ClosetItem,
@@ -42,7 +56,16 @@ export default {
       closeSeg: 0,
     }
   },
-  methods: {},
+  methods: {
+    delete(id) {
+      firebase
+        .firestore()
+        .collection("closet")
+        .doc(id)
+        .delete()
+        .then(() => (this.items = this.items.filter((item) => item.id !== id)))
+    },
+  },
   created() {
     firebase
       .firestore()
@@ -82,7 +105,17 @@ export default {
   background-color: lightgray;
   margin: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
   overflow: scroll;
+}
+.list {
+  width: 100px;
+  height: 100px;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
 }
 </style>
