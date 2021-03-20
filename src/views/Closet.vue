@@ -25,7 +25,6 @@
                 <li>
                   <ClosetItem v-bind:item="item"></ClosetItem>
                   <button v-on:click="deleteitem(item.id)">削除</button>
-                  <button>編集</button>
                 </li>
               </ul>
             </div>
@@ -86,11 +85,13 @@ export default {
 .all {
   display: flex;
   flex-direction: row;
+  width: 100vw;
+  justify-content: center;
 }
-
+.frame {
+  display: flex;
+}
 .title {
-  width: 100px;
-  height: 50px;
   background-color: rgb(128, 139, 107);
   border-radius: 10px;
   display: flex;
@@ -99,14 +100,11 @@ export default {
 }
 
 .box {
-  width: 500px;
-  height: 1000px;
   background-color: lightgray;
   margin: 10px;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
-  overflow: scroll;
+  flex-wrap: nowrap;
 }
 .list {
   width: 100px;

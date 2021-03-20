@@ -1,21 +1,23 @@
 <template>
   <div class="all">
-    <Nav></Nav>
-    <h1>log-in</h1>
-    <div v-if="!user">
-      <button v-on:click="signIn">
-        サインイン
-      </button>
-    </div>
-    <div v-else>
-      <button v-on:click="signOut">さいんアウト</button>
-      {{ user }}
-    </div>
-    <!-- <Post></Post> -->
-    <!-- <router-link to="/">Home</router-link> |
+    <v-app>
+      <Nav></Nav>
+      <h1>log-in</h1>
+      <div v-if="!user">
+        <button v-on:click="signIn">
+          サインイン
+        </button>
+      </div>
+      <div v-else>
+        <button v-on:click="signOut">さいんアウト</button>
+        {{ user }}
+      </div>
+      <!-- <Post></Post> -->
+      <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
 
-    <!-- <router-view /> -->
+      <!-- <router-view /> -->
+    </v-app>
   </div>
 </template>
 
