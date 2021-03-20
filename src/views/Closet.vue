@@ -17,7 +17,6 @@
           <option value="other">その他</option>
         </select>
       </div>
-      <div v-on:click="getImages">更新</div>
       <div class="box">
         <div v-for="item in items" :key="item.id">
           <span v-if="closeSeg == item.seg">
@@ -25,7 +24,7 @@
               <ul>
                 <li>
                   <ClosetItem v-bind:item="item"></ClosetItem>
-                  <button v-on:click="delate">削除</button>
+                  <button v-on:click="deleteitem(item.id)">削除</button>
                   <button>編集</button>
                 </li>
               </ul>
@@ -57,7 +56,7 @@ export default {
     }
   },
   methods: {
-    delete(id) {
+    deleteitem(id) {
       firebase
         .firestore()
         .collection("closet")
