@@ -4,7 +4,7 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Post from "../views/Post.vue"
 import Closet from "../views/Closet.vue"
-
+import ClosetDetail from "../views/DetailItem.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +27,11 @@ const routes = [
     path: "/Closet",
     name: "Closet",
     component: Closet,
+  },
+  {
+    path: "/Closet/:id",
+    name: "ClosetDetail",
+    component: ClosetDetail,
   },
 ]
 
