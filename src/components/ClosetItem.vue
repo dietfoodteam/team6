@@ -1,11 +1,17 @@
 <template>
-  <div>
-    <div class="item">
-      <router-link :to="{ name: 'ClosetDetail', params: { id: item.id } }">{{
-        item.title
-      }}</router-link>
-    </div>
-    <img v-bind:src="item.imageUrl" alt="" class="imageitem" />
+  <div class="item">
+    <router-link
+      :to="{ name: 'ClosetDetail', params: { id: item.id } }"
+      class="item__titleWrapper"
+    >
+      <div class="item__titleWrapper__title">
+        {{ item.title }}
+      </div>
+    </router-link>
+    <img v-bind:src="item.imageUrl" alt="" class="item__image" />
+    <button v-on:click="deleteItem(item.id)" class="item__delete-button">
+      削除
+    </button>
   </div>
 </template>
 
@@ -17,15 +23,31 @@ export default {
       images: [],
     }
   },
+  methods: {
+    deleteItem(id) {
+      this.$emit("click-delete-item", id)
+    },
+  },
 }
 </script>
 
 <style scoped>
 .item {
-  background-color: red;
+  display: flex;
+  flex-direction: column;
 }
-.imageitem {
-  width: 100px;
-  height: 100px;
+.item__titleWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: lightcoral;
+}
+.item__titleWrapper__title {
+}
+.item__image {
+  display: block;
+  height: 10rem;
+}
+.item__delete-button {
+  background-color: lightgreen;
 }
 </style>
