@@ -1,29 +1,49 @@
 <template>
-  <div id="app">
-    <div id="Nav">
-      <div id="Bar">
-        <router-link to="/Closet" id="closet">Closet</router-link> |
-        <router-link to="/Post" id="po">Post</router-link> |
-      </div>
-      <router-view />
+  <div class="nav">
+    <div class="nav--title">Mycloset</div>
+    <div class="nav--buttons">
+      <router-link to="/Closet" class="nav--buttons--button"
+        >Closet</router-link
+      >
+      |
+      <router-link to="/Post" class="nav--buttons--button">Post</router-link> |
+      <button class="nav--buttons--button singout" v-on:click="signOut">
+        Sign Out
+      </button>
     </div>
   </div>
 </template>
 
+<script>
+import firebase from "firebase"
+export default {
+  methods: {
+    signOut() {
+      firebase.auth().signOut()
+    },
+  },
+}
+</script>
+
 <style>
-#app {
+.nav {
   display: flex;
+  justify-content: space-between;
+  height: 5rem;
+  align-items: center;
 }
-#Nav {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+.nav--title {
 }
-#Bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 500px;
-  height: 100px;
+.nav--buttons {
+  border: double 2px lightcoral;
+}
+.nav--buttons--button {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.singout {
+  margin-right: 1rem;
 }
 </style>

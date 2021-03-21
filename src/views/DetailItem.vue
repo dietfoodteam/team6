@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="all">
     <div>YOUR CLOTHES</div>
+    <v-switch v-model="editMode" inset></v-switch>
     <button v-on:click="editItem">編集</button>
     <div>{{ item.title }}</div>
     <input type="text" v-model="item.title" v-if="editMode" />
-    <button v-on:click="saveChanges">変更保存</button>
-    {{ $route.params.id }}
     <select
       id="occupation"
       name="occupation"
@@ -21,7 +20,16 @@
       <option value="accessory">アクセサリー</option>
       <option value="other">その他</option>
     </select>
-    <div></div>
+
+    <div>{{ item.explain }}</div>
+    <input type="text" v-model="item.explain" v-if="editMode" />
+    <div>{{ item.date }}</div>
+    <input type="date" v-model="item.date" v-if="editMode" />
+    <div>{{ item.shop }}</div>
+    <input type="url" v-model="item.shop" v-if="editMode" />
+
+    <button v-on:click="saveChanges">変更保存</button>
+    {{ $route.params.id }}
   </div>
 </template>
 
@@ -74,3 +82,11 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

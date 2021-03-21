@@ -1,13 +1,8 @@
 <template>
   <div class="all">
-    <div class="frame">
-      <div class="title">
-        <select
-          id="occupation"
-          name="occupation"
-          v-model="closeSeg"
-          class="title"
-        >
+    <div class="all__frame">
+      <div class="all__frame__selectWrapper">
+        <select v-model="closeSeg">
           <option value="tops">トップス</option>
           <option value="bottoms">ボトムス</option>
           <option value="socks">靴下</option>
@@ -17,26 +12,15 @@
           <option value="other">その他</option>
         </select>
       </div>
-      <div class="box">
-        <div v-for="item in items" :key="item.id">
-          <span v-if="closeSeg == item.seg">
-            <div class="list">
-              <ul>
-                <li>
-                  <ClosetItem v-bind:item="item"></ClosetItem>
-                  <button v-on:click="deleteitem(item.id)">削除</button>
-                  <button>編集</button>
-                </li>
-              </ul>
-            </div>
-          </span>
+      <div class="all__frame__box">
+        <div v-for="item in items" :key="item.id" class="all__frame__box__item">
+          <ClosetItem
+            v-if="closeSeg == item.seg"
+            v-bind:item="item"
+            v-on:click-delete-item="deleteItem"
+          ></ClosetItem>
         </div>
       </div>
-    </div>
-
-    <div class="frame">
-      <div class="title">コーデ</div>
-      <div class="box"></div>
     </div>
   </div>
 </template>
@@ -56,13 +40,8 @@ export default {
     }
   },
   methods: {
-    deleteitem(id) {
-      firebase
-        .firestore()
-        .collection("closet")
-        .doc(id)
-        .delete()
-        .then(() => (this.items = this.items.filter((item) => item.id !== id)))
+    deleteItem(id) {
+      this.items = this.items.filter((item) => item.id !== id)
     },
   },
   created() {
@@ -85,12 +64,18 @@ export default {
 <style scoped>
 .all {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 10rem;
 }
-
-.title {
-  width: 100px;
-  height: 50px;
+.all__frame {
+  display: flex;
+  flex-direction: column;
+}
+.all__frame__selectWrapper {
+  width: 10rem;
+  padding: 1rem 1rem;
+  margin-right: 0.5rem;
   background-color: rgb(128, 139, 107);
   border-radius: 10px;
   display: flex;
@@ -98,23 +83,11 @@ export default {
   justify-content: center;
 }
 
-.box {
-  width: 500px;
-  height: 1000px;
+.all__frame__box {
   background-color: lightgray;
-  margin: 10px;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
-  overflow: scroll;
 }
-.list {
-  width: 100px;
-  height: 100px;
-}
-
-.frame {
-  display: flex;
-  flex-direction: column;
+.all__frame__box__list {
 }
 </style>
