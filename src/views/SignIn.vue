@@ -1,13 +1,26 @@
 <template>
-  <div>
-    <h1>log-in</h1>
-    <div v-if="!user">
-      <v-btn block v-on:click="signIn">
-        Block Button
-      </v-btn>
+  <div class="all">
+    <h1 class="all--title">サインインしてください。</h1>
+    <div class="all--singinbotton" v-if="!user">
+      <v-btn
+        block
+        v-on:click="signIn"
+        color="primary"
+        elevation="5"
+        large
+        outlined
+        >sing-in</v-btn
+      >
     </div>
     <div v-else>
-      <button v-on:click="signOut">サインアウト</button>
+      <v-btn
+        v-on:click="signOut"
+        color="primary"
+        depressed
+        disabled
+        elevation="8"
+        >sing-out
+      </v-btn>
       {{ user }}
     </div>
   </div>
@@ -33,3 +46,20 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.all {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.all--title {
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+.all--singinbotton {
+  width: 20rem;
+}
+</style>
