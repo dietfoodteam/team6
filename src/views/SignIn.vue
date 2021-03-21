@@ -2,9 +2,9 @@
   <div>
     <h1>log-in</h1>
     <div v-if="!user">
-      <button v-on:click="signIn">
-        サインイン
-      </button>
+      <v-btn block v-on:click="signIn">
+        Block Button
+      </v-btn>
     </div>
     <div v-else>
       <button v-on:click="signOut">サインアウト</button>
