@@ -13,10 +13,19 @@
       {{ user }}
     </div>
     <Post></Post>
-    <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
 
-    <!-- <router-view /> -->
+  
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      /*ここから新規追加*/
+      <router-link to="/singup">Sing up</router-link> |
+      <router-link to="/singin">Sing in</router-link> |
+      <router-link to="/singout">Sing out</router-link> |
+      <router-link to="/mypage">Mypage</router-link> |
+      /*ここまで*/
+    </div>
+    <router-view />
   </div>
 </template>
 
