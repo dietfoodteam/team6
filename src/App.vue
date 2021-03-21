@@ -2,54 +2,30 @@
   <div class="all">
     <v-app>
       <Nav></Nav>
-      <h1>log-in</h1>
-      <div v-if="!user">
-        <button v-on:click="signIn">
-          サインイン
-        </button>
-      </div>
-      <div v-else>
-        <button v-on:click="signOut">さいんアウト</button>
-        {{ user }}
-      </div>
-      <!-- <Post></Post> -->
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
-
-      <!-- <router-view /> -->
+      <SignIn v-if="!user"></SignIn>
+      <router-view v-else />
     </v-app>
   </div>
 </template>
 
 <script>
-import firebase from "firebase"
-// import Post from "./views/Post"
 import Nav from "@/components/Nav.vue"
+import SignIn from "@/views/SignIn.vue"
+import firebase from "firebase"
+
 export default {
-  components: { Nav },
+  components: { SignIn, Nav },
   data() {
     return {
       user: null,
     }
   },
-  methods: {
-    signIn() {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithPopup(provider)
-    },
-    signOut() {
-      firebase.auth().signOut()
-    },
-  },
-  mounted() {
+  created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.user = user
-        // this.$store.dispatch("setUser", user);
       } else {
         this.user = null
-        // サインアウト中
-        // this.$store.dispatch("setUser", undefined);
       }
     })
   },

@@ -4,11 +4,22 @@
       <div id="Bar">
         <router-link to="/Closet" id="closet">Closet</router-link> |
         <router-link to="/Post" id="po">Post</router-link> |
+        <button v-on:click="signOut">Sign Out</button>
       </div>
-      <router-view />
     </div>
   </div>
 </template>
+
+<script>
+import firebase from "firebase"
+export default {
+  methods: {
+    signOut() {
+      firebase.auth().signOut()
+    },
+  },
+}
+</script>
 
 <style>
 #app {
