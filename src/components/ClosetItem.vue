@@ -38,16 +38,24 @@ export default {
 }
 .item__titleWrapper {
   display: flex;
+  color: black;
   justify-content: center;
-  background-color: lightcoral;
+  text-decoration: none;
+}
+.item__titleWrapper:hover {
+  text-decoration: underline;
 }
 .item__titleWrapper__title {
 }
 .item__image {
   display: block;
-  height: 10rem;
+  height: 11rem;
 }
 .item__delete-button {
-  background-color: lightgreen;
+  background-color: rgb(98, 116, 175);
+  color: white;
+  margin: 5px;
+  padding: 5px 0px;
+  border-radius: 15px;
 }
 </style>

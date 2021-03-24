@@ -1,17 +1,20 @@
 <template>
   <div class="all">
-    <div>YOUR CLOTHES</div>
+    <div class="title">YOUR CLOTHES</div>
+    <img v-bind:src="item.imageUrl" alt="" class="item__image" />
+
     <v-switch v-model="editMode" inset></v-switch>
-    <button v-on:click="editItem">編集</button>
-    <div>{{ item.title }}</div>
-    <input type="text" v-model="item.title" v-if="editMode" />
+    <!-- <button v-on:click="editItem">編集</button> -->
+    <input type="text" v-model="item.title" v-if="editMode" class="deText" />
+    <div v-else>{{ item.title }}</div>
+
     <select
       id="occupation"
       name="occupation"
       v-model="item.seg"
       v-if="editMode"
     >
-      <option value="" selected="selected">洋服の種類</option>
+      <option value="" selected="selected" class="detext">洋服の種類</option>
       <option value="tops">トップス</option>
       <option value="bottoms">ボトムス</option>
       <option value="socks">靴下</option>
@@ -20,17 +23,22 @@
       <option value="accessory">アクセサリー</option>
       <option value="other">その他</option>
     </select>
+    <div v-else>{{ item.seg }}</div>
 
-    <div>{{ item.explain }}</div>
-    <input type="text" v-model="item.explain" v-if="editMode" />
-    <div>{{ item.date }}</div>
-    <input type="date" v-model="item.date" v-if="editMode" />
-    <div>{{ item.shop }}</div>
-    <input type="url" v-model="item.shop" v-if="editMode" />
+    <input type="text" v-model="item.explain" v-if="editMode" class="deText" />
+    <div v-else>{{ item.explain }}</div>
+    <input type="date" v-model="item.date" v-if="editMode" class="detext" />
+    <div v-else>{{ item.date }}</div>
+    <input type="url" v-model="item.shop" v-if="editMode" class="deText" />
+    <div v-else>{{ item.shop }}</div>
 
-    <button v-on:click="saveChanges">変更保存</button>
-    {{ $route.params.id }}
+    <!-- <button v-on:click="saveChanges">変更保存</button> -->
+    <v-btn icon color="green" v-on:click="saveChanges">
+      <v-icon>mdi-cached</v-icon>
+    </v-btn>
   </div>
+
+  <!-- {{ $route.params.id }} -->
 </template>
 
 <script>
@@ -88,5 +96,19 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 3rem;
+}
+.title {
+  font-family: fantasy;
+  background-color: powderblue;
+  padding: 2rem 12rem;
+  margin: 1rem;
+}
+.deText {
+  text-align: center;
+}
+.item__image {
+  height: 20rem;
+  width: auto;
 }
 </style>
