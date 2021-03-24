@@ -9,15 +9,26 @@
       </div>
     </router-link>
     <img v-bind:src="item.imageUrl" alt="" class="item__image" />
-    <button v-on:click="deleteItem(item.id)" class="item__delete-button">
+    <button
+      v-if="isDelete"
+      v-on:click="deleteItem(item.id)"
+      class="item__delete-button"
+    >
       削除
+    </button>
+    <button
+      v-if="isRegister"
+      v-on:click="registerItem(item.id)"
+      class="item__delete-button"
+    >
+      登録
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["item"],
+  props: ["item", "isDelete", "isRegister"],
   data() {
     return {
       images: [],
@@ -26,6 +37,9 @@ export default {
   methods: {
     deleteItem(id) {
       this.$emit("click-delete-item", id)
+    },
+    registerItem(id) {
+      this.$emit("click-register-item", id)
     },
   },
 }
@@ -38,16 +52,24 @@ export default {
 }
 .item__titleWrapper {
   display: flex;
+  color: black;
   justify-content: center;
-  background-color: lightcoral;
+  text-decoration: none;
+}
+.item__titleWrapper:hover {
+  text-decoration: underline;
 }
 .item__titleWrapper__title {
 }
 .item__image {
   display: block;
-  height: 10rem;
+  height: 11rem;
 }
 .item__delete-button {
-  background-color: lightgreen;
+  background-color: rgb(98, 116, 175);
+  color: white;
+  margin: 5px;
+  padding: 5px 0px;
+  border-radius: 15px;
 }
 </style>

@@ -101,7 +101,7 @@ export default {
         })
     },
 
-    upload() {
+    async upload() {
       // ref は reference の略。データの在り処＝住所を表すイメージ。
       const storageRef = storage.ref()
 
@@ -110,7 +110,9 @@ export default {
       const timestamp = createdAt.getTime()
       const uniqueFileName = timestamp + "_" + this.imageFile.name
       const fileRef = storageRef.child("images/" + uniqueFileName)
-      fileRef
+
+      const uid = firebase.auth().currentUser.uid
+      await fileRef
         .put(this.imageFile)
         .then(() => fileRef.getDownloadURL())
         .then((url) => {
@@ -119,6 +121,7 @@ export default {
             .firestore()
             .collection("closet")
             .add({
+              uid: uid,
               title: this.closeTitle,
               seg: this.closeSeg,
               explain: this.closeExp,
@@ -127,6 +130,7 @@ export default {
               imageUrl: this.imageUrl,
             })
         })
+      this.$router.push({ name: "Closet" })
     },
   },
 }

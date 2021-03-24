@@ -17,7 +17,21 @@
           <ClosetItem
             v-if="closeSeg == item.seg"
             v-bind:item="item"
-            v-on:click-delete-item="deleteItem"
+            v-bind:isDelete="true"
+            v-on:click-delete-item="deleteCloth"
+          ></ClosetItem>
+        </div>
+      </div>
+      <div class="all__frame__box">
+        <div
+          v-for="coordinate in coordinates"
+          :key="coordinate.id"
+          class="all__frame__box__item"
+        >
+          <ClosetItem
+            v-bind:item="coordinate"
+            v-bind:isDelete="true"
+            v-on:click-delete-item="deleteCoordinate"
           ></ClosetItem>
         </div>
       </div>
@@ -28,7 +42,6 @@
 <script>
 import firebase from "firebase"
 import ClosetItem from "../components/ClosetItem"
-
 export default {
   components: {
     ClosetItem,
@@ -36,22 +49,49 @@ export default {
   data() {
     return {
       items: [],
-      closeSeg: 0,
+      coordinates: [],
+      closeSeg: "tops",
     }
   },
   methods: {
-    deleteItem(id) {
+    deleteCloth(id) {
       this.items = this.items.filter((item) => item.id !== id)
+      this.deleteItemFromFireStore(id, "closet")
+    },
+    deleteCoordinate(id) {
+      this.coordinates = this.coordinates.filter((item) => item.id !== id)
+      this.deleteItemFromFireStore(id, "coordinate")
+    },
+    deleteItemFromFireStore(id, collectionName) {
+      firebase
+        .firestore()
+        .collection(collectionName)
+        .doc(id)
+        .delete()
     },
   },
-  created() {
-    firebase
+  async created() {
+    await firebase
       .firestore()
       .collection("closet")
+      .where("uid", "==", firebase.auth().currentUser.uid)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {
           this.items.push({
+            id: doc.id,
+            ...doc.data(),
+          })
+        })
+      })
+    await firebase
+      .firestore()
+      .collection("coordinate")
+      .where("uid", "==", firebase.auth().currentUser.uid)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          this.coordinates.push({
             id: doc.id,
             ...doc.data(),
           })
@@ -75,19 +115,26 @@ export default {
 .all__frame__selectWrapper {
   width: 10rem;
   padding: 1rem 1rem;
+  margin: 0px 15px;
   margin-right: 0.5rem;
-  background-color: rgb(128, 139, 107);
+  background-color: rgba(165, 177, 170, 0.863);
+  border: 1px solid;
+  border-color: rgb(33, 63, 33);
   border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .all__frame__box {
-  background-color: lightgray;
+  background-color: rgba(192, 218, 219, 0.842);
+  border-radius: 5px;
+  margin: 25px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
-.all__frame__box__list {
+.all__frame__box__item {
+  margin: 10px;
 }
 </style>
