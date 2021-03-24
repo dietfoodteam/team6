@@ -84,6 +84,7 @@ export default {
     firebase
       .firestore()
       .collection("closet")
+      .where("uid", "==", firebase.auth().currentUser.uid)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {
@@ -143,6 +144,7 @@ export default {
             .firestore()
             .collection("coordinate")
             .add({
+              uid: firebase.auth().currentUser.uid,
               title: this.title,
               comment: this.comment,
               imageUrl: this.imageUrl,
