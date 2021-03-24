@@ -1,23 +1,15 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import Home from "../views/Home.vue"
-import About from "../views/About.vue"
 import Post from "../views/Post.vue"
 import Closet from "../views/Closet.vue"
-import Code from "../views/Code.vue"
-
+import ClosetDetail from "../views/DetailItem.vue"
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: About,
+    name: "Root",
+    component: Closet,
   },
   {
     path: "/Post",
@@ -30,9 +22,9 @@ const routes = [
     component: Closet,
   },
   {
-    path: "/Code",
-    name: "Code",
-    component: Code,
+    path: "/Closet/:id",
+    name: "ClosetDetail",
+    component: ClosetDetail,
   },
 ]
 
