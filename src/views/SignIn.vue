@@ -39,9 +39,11 @@ export default {
     signIn() {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider)
+      this.$router.push({ name: "Closet" })
     },
     signOut() {
       firebase.auth().signOut()
+      this.$router.push({ name: "Root" })
     },
   },
 }

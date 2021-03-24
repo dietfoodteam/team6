@@ -3,7 +3,7 @@
     <div class="all__frame">
       <div class="all__frame__selectWrapper">
         <select v-model="closeSeg">
-          <option value="tops" selected>トップス</option>
+          <option value="tops">トップス</option>
           <option value="bottoms">ボトムス</option>
           <option value="socks">靴下</option>
           <option value="room-wear">部屋着</option>
@@ -17,7 +17,21 @@
           <ClosetItem
             v-if="closeSeg == item.seg"
             v-bind:item="item"
-            v-on:click-delete-item="deleteItem"
+            v-bind:isDelete="true"
+            v-on:click-delete-item="deleteCloth"
+          ></ClosetItem>
+        </div>
+      </div>
+      <div class="all__frame__box">
+        <div
+          v-for="coordinate in coordinates"
+          :key="coordinate.id"
+          class="all__frame__box__item"
+        >
+          <ClosetItem
+            v-bind:item="coordinate"
+            v-bind:isDelete="true"
+            v-on:click-delete-item="deleteCoordinate"
           ></ClosetItem>
         </div>
       </div>
@@ -28,7 +42,6 @@
 <script>
 import firebase from "firebase"
 import ClosetItem from "../components/ClosetItem"
-
 export default {
   components: {
     ClosetItem,
@@ -36,22 +49,49 @@ export default {
   data() {
     return {
       items: [],
-      closeSeg: 0,
+      coordinates: [],
+      closeSeg: "tops",
     }
   },
   methods: {
-    deleteItem(id) {
+    deleteCloth(id) {
       this.items = this.items.filter((item) => item.id !== id)
+      this.deleteItemFromFireStore(id, "closet")
+    },
+    deleteCoordinate(id) {
+      this.coordinates = this.coordinates.filter((item) => item.id !== id)
+      this.deleteItemFromFireStore(id, "coordinate")
+    },
+    deleteItemFromFireStore(id, collectionName) {
+      firebase
+        .firestore()
+        .collection(collectionName)
+        .doc(id)
+        .delete()
     },
   },
-  created() {
-    firebase
+  async created() {
+    await firebase
       .firestore()
       .collection("closet")
+      .where("uid", "==", firebase.auth().currentUser.uid)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {
           this.items.push({
+            id: doc.id,
+            ...doc.data(),
+          })
+        })
+      })
+    await firebase
+      .firestore()
+      .collection("coordinate")
+      .where("uid", "==", firebase.auth().currentUser.uid)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          this.coordinates.push({
             id: doc.id,
             ...doc.data(),
           })
