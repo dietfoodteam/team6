@@ -3,7 +3,7 @@
     <div class="all__frame">
       <div class="all__frame__selectWrapper">
         <select v-model="closeSeg">
-          <option value="tops" selected>トップス</option>
+          <option value="tops">トップス</option>
           <option value="bottoms">ボトムス</option>
           <option value="socks">靴下</option>
           <option value="room-wear">部屋着</option>
@@ -17,9 +17,13 @@
           <ClosetItem
             v-if="closeSeg == item.seg"
             v-bind:item="item"
+            v-bind:isDelete="true"
             v-on:click-delete-item="deleteItem"
           ></ClosetItem>
         </div>
+      </div>
+      <div class="all__frame__box">
+        <Corrdinate></Corrdinate>
       </div>
     </div>
   </div>
@@ -28,15 +32,16 @@
 <script>
 import firebase from "firebase"
 import ClosetItem from "../components/ClosetItem"
-
+import Corrdinate from "../components/Coordinate"
 export default {
   components: {
     ClosetItem,
+    Corrdinate,
   },
   data() {
     return {
       items: [],
-      closeSeg: 0,
+      closeSeg: "tops",
     }
   },
   methods: {

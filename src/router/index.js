@@ -1,6 +1,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import Post from "../views/Post.vue"
+import Post from "../views/PostItem.vue"
+import PostCoordinate from "../views/PostCoordinate.vue"
 import Closet from "../views/Closet.vue"
 import ClosetDetail from "../views/DetailItem.vue"
 Vue.use(VueRouter)
@@ -15,6 +16,11 @@ const routes = [
     path: "/Post",
     name: "Post",
     component: Post,
+  },
+  {
+    path: "/PostCoordinate",
+    name: "PostCoordinate",
+    component: PostCoordinate,
   },
   {
     path: "/Closet",

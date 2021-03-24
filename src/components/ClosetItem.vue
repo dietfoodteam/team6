@@ -9,15 +9,26 @@
       </div>
     </router-link>
     <img v-bind:src="item.imageUrl" alt="" class="item__image" />
-    <button v-on:click="deleteItem(item.id)" class="item__delete-button">
+    <button
+      v-if="isDelete"
+      v-on:click="deleteItem(item.id)"
+      class="item__delete-button"
+    >
       削除
+    </button>
+    <button
+      v-if="isRegister"
+      v-on:click="registerItem(item.id)"
+      class="item__delete-button"
+    >
+      登録
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["item"],
+  props: ["item", "isDelete", "isRegister"],
   data() {
     return {
       images: [],
@@ -26,6 +37,9 @@ export default {
   methods: {
     deleteItem(id) {
       this.$emit("click-delete-item", id)
+    },
+    registerItem(id) {
+      this.$emit("click-register-item", id)
     },
   },
 }
