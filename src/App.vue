@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Nav></Nav>
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <!-- <img alt="Vue logo" src="./assets/logo.png" />
     <h1>log-in</h1>
     <div v-if="!user">
       <button v-on:click="signIn">
@@ -11,7 +11,7 @@
     <div v-else>
       <button v-on:click="signOut">さいんアウト</button>
       {{ user }}
-    </div>
+    </div> -->
     <Post></Post>
     <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
@@ -22,10 +22,10 @@
 
 <script>
 import firebase from "firebase"
-import Post from "./views/Post"
+//import Post from "./views/Post"
 import Nav from "@/components/Nav.vue"
 export default {
-  components: { Post, Nav },
+  components: { Nav },
   data() {
     return {
       user: null,

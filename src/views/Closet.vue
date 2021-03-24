@@ -8,9 +8,9 @@
           v-model="closeSeg"
           class="title"
         >
-          <option value="1">トップス</option>
-          <option value="2">ボトムス</option>
-          <option value="3">靴下</option>
+          <option value="tops">トップス</option>
+          <option value="bottoms">ボトムス</option>
+          <option value="s">靴下</option>
           <option value="4">部屋着</option>
           <option value="5">くつ</option>
           <option value="6">アクセサリー</option>

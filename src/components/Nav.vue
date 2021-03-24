@@ -4,6 +4,7 @@
       <div id="Bar">
         <router-link to="/Closet" id="closet">Closet</router-link> |
         <router-link to="/Post" id="po">Post</router-link> |
+        <router-link to="/Code" id="registar">コーデ登録</router-link> |
       </div>
       <router-view />
     </div>

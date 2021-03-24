@@ -4,6 +4,7 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Post from "../views/Post.vue"
 import Closet from "../views/Closet.vue"
+import Code from "../views/Code.vue"
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/Closet",
     name: "Closet",
     component: Closet,
+  },
+  {
+    path: "/Code",
+    name: "Code",
+    component: Code,
   },
 ]
 
