@@ -19,8 +19,8 @@
             <div class="segment">
               洋服の種類
               <br />
-              <select class="seg-box" name="occupation" v-model="closeSeg">
-                <option value="" selected="selected">選択してください</option>
+              <select id="occupation" name="occupation" v-model="closeSeg">
+                <option value="" selected="selected">洋服の種類</option>
                 <option value="tops">トップス</option>
                 <option value="bottoms">ボトムス</option>
                 <option value="socks">靴下</option>
