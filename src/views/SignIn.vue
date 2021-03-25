@@ -1,6 +1,7 @@
 <template>
   <div class="all">
-    <h1 class="all--title">サインインしてください。</h1>
+    <h1 class="all--title">Google アカウントでサインイン</h1>
+
     <div class="all--singinbotton" v-if="!user">
       <v-btn
         block
@@ -53,6 +54,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: rgb(14, 13, 13);
+  background-color: rgb(240, 255, 240);
 }
 .all--title {
   margin-top: 10rem;
@@ -60,6 +63,7 @@ export default {
   text-align: center;
 }
 .all--singinbotton {
+  background-color: rgba(236, 236, 236, 0.993);
   width: 20rem;
 }
 </style>
