@@ -6,10 +6,14 @@
       <router-link to="/Closet" class="nav--buttons--button"
         >Closet</router-link
       >
-      |<router-link to="/Post" class="nav--buttons--button">Post</router-link> |
+
+      |
+      <router-link to="/Post" class="nav--buttons--button">Post</router-link> |
       <router-link to="/PostCoordinate" class="nav--buttons--button"
-        >Coodinate</router-link
+        >PostCoodinate</router-link
       >
+      |
+
       <button class="nav--buttons--button singout" v-on:click="signOut">
         Sign Out
       </button>

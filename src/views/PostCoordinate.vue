@@ -1,8 +1,27 @@
 <template>
   <div class="all">
-    <div class="top-box">
-      <div class="s">
-        <h1>コーディネート登録</h1>
+
+    <div class="all__item">
+      <h1>登録するアイテムを選択</h1>
+      <select v-model="closeSeg">
+        <option value="tops" selected>トップス</option>
+        <option value="bottoms">ボトムス</option>
+        <option value="socks">靴下</option>
+        <option value="room-wear">部屋着</option>
+        <option value="shoes">くつ</option>
+        <option value="accessory">アクセサリー</option>
+        <option value="other">その他</option>
+      </select>
+      <div v-for="item in items" :key="item.id" class="all__frame__box__item">
+        <ClosetItem
+          class="item"
+          v-if="closeSeg == item.seg"
+          v-bind:item="item"
+          v-bind:isRegister="true"
+          v-bind:isDelete="false"
+          v-on:click-register-item="registerItem"
+        ></ClosetItem>
+
       </div>
     </div>
     <div class="everypair">
@@ -202,7 +221,16 @@ export default {
 </script>
 
 <style scoped>
-/* .item {
+
+.all {
+  display: flex;
+  align-items: center;
+}
+.all__item {
+  margin: 2rem;
+}
+.item {
+
   padding: 0 10rem;
 } */
 

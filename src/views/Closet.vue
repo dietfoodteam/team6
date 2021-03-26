@@ -22,6 +22,9 @@
           ></ClosetItem>
         </div>
       </div>
+      <div class="all__frame__selectWrapper">
+        コーデ
+      </div>
       <div class="all__frame__box">
         <div
           v-for="coordinate in coordinates"
@@ -107,6 +110,7 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 10rem;
+  background-color: rgb(214, 214, 212);
 }
 .all__frame {
   display: flex;
@@ -127,7 +131,7 @@ export default {
 }
 
 .all__frame__box {
-  background-color: rgba(192, 218, 219, 0.842);
+  background-color: rgba(193, 219, 192, 0.842);
   border-radius: 5px;
   margin: 25px;
   display: flex;

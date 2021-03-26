@@ -9,13 +9,16 @@
       </div>
     </router-link>
     <img v-bind:src="item.imageUrl" alt="" class="item__image" />
-    <button
+    <v-btn
+      depressed
+      elevation="2"
+      outlined
+      rounded
       v-if="isDelete"
       v-on:click="deleteItem(item.id)"
       class="item__delete-button"
+      >削除</v-btn
     >
-      削除
-    </button>
     <button
       v-if="isRegister"
       v-on:click="registerItem(item.id)"
@@ -66,7 +69,7 @@ export default {
   height: 11rem;
 }
 .item__delete-button {
-  background-color: rgb(98, 116, 175);
+  background-color: white;
   color: white;
   margin: 5px;
   padding: 5px 0px;
