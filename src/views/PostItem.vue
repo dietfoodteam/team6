@@ -1,73 +1,96 @@
 <template>
   <div id="app">
     <div class="all">
-      <h1 id="register">洋服登録</h1>
-      <div class="inputArea">
-        <div class="left-block">
-          <div class="left-upper">
-            <div class="title">
-              洋服のタイトル
-              <br />
-              <input
-                type="text"
-                class="title-box"
-                placeholder="（例）春用ボトムス"
-                v-model="closeTitle"
-                style="’font-size:40em"
-              />
-            </div>
-            <div class="segment">
-              洋服の種類
-              <br />
-              <select id="occupation" name="occupation" v-model="closeSeg">
-                <option value="" selected="selected">洋服の種類</option>
-                <option value="tops">トップス</option>
-                <option value="bottoms">ボトムス</option>
-                <option value="socks">靴下</option>
-                <option value="room-wear">部屋着</option>
-                <option value="shoes">くつ</option>
-                <option value="accessory">アクセサリー</option>
-                <option value="other">その他</option>
-              </select>
-            </div>
-          </div>
-          <div class="explain">
-            コメント
-            <br />
-            <textarea
-              class="comment-box"
-              cols="30"
-              rows="10"
-              v-model="closeExp"
-            ></textarea>
-          </div>
+      <div class="top-box">
+        <div class="s">
+          <h1 id="register">洋服登録</h1>
         </div>
-        <div class="right-block">
-          <div class="right-upper">
-            <div id="Image">
-              洋服の画像
-              <input type="file" accept="image/*" @change="onFileChange" />
-            </div>
-            <div class="Image-show">
-              <img v-bind:src="imageUrl" />
-            </div>
-          </div>
-          <div class="right-lower">
-            <div class="date">
-              購入時期
-              <br />
-              <input type="date" v-model="boughtDate" />
-            </div>
-            <div class="url">
-              購入ショップやサイトのURL
-              <br />
-              <input type="url" v-model="boughtShop" />
-            </div>
+      </div>
+
+      <div class="everypair">
+        <div class="sen">
+          <h3 class="h3-sen">洋服タイトル</h3>
+        </div>
+        <div class="right">
+          <input
+            type="text"
+            class="title-box"
+            placeholder="（例）春用ボトムス"
+            v-model="closeTitle"
+          />
+        </div>
+      </div>
+
+      <div class="everypair">
+        <div class="sen">
+          <h3 class="h3-sen">洋服の種類</h3>
+        </div>
+        <div class="right">
+          <select id="occupation" name="occupation" v-model="closeSeg">
+            <option value="" selected="selected">▼選択してください</option>
+            <option value="tops">トップス</option>
+            <option value="bottoms">ボトムス</option>
+            <option value="socks">靴下</option>
+            <option value="room-wear">部屋着</option>
+            <option value="shoes">くつ</option>
+            <option value="accessory">アクセサリー</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="everypair">
+        <div class="sen">
+          <h3 class="h3-sen">コメント</h3>
+        </div>
+        <div class="right">
+          <textarea
+            class="comment-box"
+            cols="30"
+            rows="10"
+            v-model="closeExp"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="everypair">
+        <div class="sen">
+          <h3 class="h3-sen">購入時期</h3>
+        </div>
+        <div class="right">
+          <input class="inputDate" type="date" v-model="boughtDate" />
+        </div>
+      </div>
+      <div class="everypair">
+        <div class="sen">
+          <h3 class="h3-sen">購入ショップやサイトURL</h3>
+        </div>
+        <div class="right">
+          <input class="inputUrl" type="url" v-model="boughtShop" />
+        </div>
+      </div>
+      <div class="everypair-img">
+        <div class="sen">
+          <h3 class="h3-sen">洋服の画像</h3>
+        </div>
+        <div class="row">
+          <input
+            class="selImage"
+            type="file"
+            accept="image/*"
+            @change="onFileChange"
+          />
+
+          <div class="Image-show">
+            <img v-bind:src="imageUrl" />
           </div>
         </div>
       </div>
+
       <div class="reg-button">
-        <button class="reg" v-on:click="upload">登録</button><br />
+        <v-btn class="reg" depressed elevation="2" outlined @click="upload"
+          >登録</v-btn
+        >
       </div>
     </div>
   </div>
@@ -144,57 +167,76 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  width: 1660px;
+  width: 100%;
+  height: 100%;
+  /* background: #a1ad90; */
+  background: #ebeee9;
 }
 .inputArea {
   display: flex;
   flex-direction: row;
+  border: 1px solid black;
 }
-.left-block {
-  width: 70%;
+.sen {
+  width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.right {
+  width: 400px;
+  display: flex;
+
+  align-items: center;
+}
+
+.everypair {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 200px;
+}
+.everypair-img {
+  display: flex;
+  justify-content: space-evenly;
   height: 500px;
-  justify-content: center;
 }
-.right-block {
-  width: 50%;
+.h3-sen {
+  text-align: right;
 }
-.left-upper {
+.row {
   display: flex;
-  flex-direction: row;
-  height: 150px;
-}
-.right-upper {
-  height: 550px;
-}
-.right-lower {
-  display: flex;
-  flex-direction: row;
-  height: 100px;
+  flex-direction: column;
+  width: 400px;
 }
 .title-box {
-  width: 200px;
-  font: 100px;
+  width: 75%;
+  background: #d9ded2;
+  border: 1px solid black; /* 枠線 */
 }
-.seg-box {
-  width: 200px;
-}
+
 .comment-box {
-  height: 300px;
-  width: 450px;
+  width: 75%;
+  background: #d9ded2;
+  border: 1px solid black; /* 枠線 */
 }
-.title {
-  width: 50%;
+
+#occupation {
+  border: 1px solid black; /* 枠線 */
+  width: 75%;
+  background: #d9ded2;
 }
+
 .Image-show {
-  height: 400px;
+  height: 350px;
+  background: #d9ded2;
 }
+
 .Image-show img {
   width: 100%;
+  height: 100%;
 }
-.date {
-  width: 300px;
-}
+
 .reg-button {
   display: flex;
   justify-content: center;
@@ -203,20 +245,30 @@ export default {
   width: 100px;
   height: 80px;
   font-size: 20px;
+  background: #ffffff;
 }
-
-#register {
-  font-family: fantasy;
-  color: #524f4c;
-  background-color: rgb(194, 177, 194);
-  text-align: center;
+.inputDate {
+  width: 75%;
+  border: 1px solid black; /* 枠線 */
+  background: #d9ded2;
 }
-.photo {
-  width: 300px;
-  height: 200px;
+.inputUrl {
+  width: 75%;
+  border: 1px solid black; /* 枠線 */
+  background: #d9ded2;
 }
-
-input.inputTitle {
-  width: 20%;
+.top-box {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+}
+.s {
+  border: 1px solid black; /* 枠線 */
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a1ad90;
 }
 </style>
