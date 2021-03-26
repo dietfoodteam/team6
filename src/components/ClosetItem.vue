@@ -70,7 +70,7 @@ export default {
 }
 .item__delete-button {
   background-color: white;
-  color: white;
+  color: black;
   margin: 5px;
   padding: 5px 0px;
   border-radius: 15px;
