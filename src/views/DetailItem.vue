@@ -25,8 +25,13 @@
     </select>
     <div v-else>{{ item.seg }}</div>
 
-    <textarea v-model="item.explain" v-if="editMode" class="deText" />
-    <div v-else>{{ item.explain }}</div>
+    <textarea
+      v-model="item.explain"
+      v-if="editMode"
+      class="deText"
+      style="width:400px; height:100px;"
+    />
+    <div v-else class="ex">{{ item.explain }}</div>
     <input type="date" v-model="item.date" v-if="editMode" class="detext" />
     <div v-else>{{ item.date }}</div>
     <input type="url" v-model="item.shop" v-if="editMode" class="deText" />
@@ -93,16 +98,22 @@ export default {
 
 <style scoped>
 .all {
+  table-layout: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem;
+  text-align: center;
+  margin: 3rem 0rem;
+  background-color: rgb(236, 236, 219);
 }
 .title {
   font-family: fantasy;
-  background-color: powderblue;
-  padding: 2rem 12rem;
+  background-color: rgb(181, 190, 149);
+  text-align: center;
+  padding: 2rem 1rem;
   margin: 1rem;
+}
+.ex {
 }
 .deText {
   text-align: center;

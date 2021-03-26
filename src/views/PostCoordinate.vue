@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>
+  <div class="all">
+    <div class="all__item">
       <h1>登録するアイテムを選択</h1>
       <select v-model="closeSeg">
         <option value="tops" selected>トップス</option>
@@ -158,6 +158,13 @@ export default {
 </script>
 
 <style scoped>
+.all {
+  display: flex;
+  align-items: center;
+}
+.all__item {
+  margin: 2rem;
+}
 .item {
   padding: 0 10rem;
 }
