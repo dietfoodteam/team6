@@ -25,7 +25,7 @@
     </select>
     <div v-else>{{ item.seg }}</div>
 
-    <input type="text" v-model="item.explain" v-if="editMode" class="deText" />
+    <textarea v-model="item.explain" v-if="editMode" class="deText" />
     <div v-else>{{ item.explain }}</div>
     <input type="date" v-model="item.date" v-if="editMode" class="detext" />
     <div v-else>{{ item.date }}</div>
