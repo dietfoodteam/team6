@@ -39,11 +39,18 @@ export default {
   justify-content: space-between;
   height: 5rem;
   align-items: center;
+  background-color: rgb(226, 226, 226);
 }
 .nav--title {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 4ch;
+  color: rgb(10, 10, 9);
 }
 .nav--buttons {
-  border: double 2px lightcoral;
+  border: double 2px rgb(12, 12, 12);
 }
 .nav--buttons--button {
   padding-top: 1rem;
