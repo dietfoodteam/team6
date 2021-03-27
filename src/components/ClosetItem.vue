@@ -1,6 +1,17 @@
 <template>
   <div class="item">
     <router-link
+      v-if="isCoordinate"
+      :to="{ name: 'CoordinatetDetail', params: { id: item.id } }"
+      class="item__titleWrapper"
+    >
+      <div class="item__titleWrapper__title">
+        {{ item.title }}
+      </div>
+    </router-link>
+
+    <router-link
+      v-else
       :to="{ name: 'ClosetDetail', params: { id: item.id } }"
       class="item__titleWrapper"
     >
@@ -8,6 +19,7 @@
         {{ item.title }}
       </div>
     </router-link>
+
     <img v-bind:src="item.imageUrl" alt="" class="item__image" />
     <v-btn
       depressed
@@ -31,7 +43,7 @@
 
 <script>
 export default {
-  props: ["item", "isDelete", "isRegister"],
+  props: ["item", "isDelete", "isRegister", "isCoordinate"],
   data() {
     return {
       images: [],
