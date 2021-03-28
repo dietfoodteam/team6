@@ -4,6 +4,7 @@ import Post from "../views/PostItem.vue"
 import PostCoordinate from "../views/PostCoordinate.vue"
 import Closet from "../views/Closet.vue"
 import ClosetDetail from "../views/DetailItem.vue"
+import CoordinateDetail from "../views/DetailCoordinate.vue"
 import SignIn from "../views/SignIn.vue"
 import firebase from "firebase"
 Vue.use(VueRouter)
@@ -38,6 +39,11 @@ const routes = [
     path: "/Closet/:id",
     name: "ClosetDetail",
     component: ClosetDetail,
+  },
+  {
+    path: "/Coordinate/:id",
+    name: "CoordinatetDetail",
+    component: CoordinateDetail,
   },
 ]
 

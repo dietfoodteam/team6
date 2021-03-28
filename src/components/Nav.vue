@@ -39,18 +39,18 @@ export default {
   justify-content: space-between;
   height: 5rem;
   align-items: center;
-  background-color: rgb(226, 226, 226);
+  background-image: url(../assets/back.jpg);
+  background-size: cover;
+  background-position: 0px -110px;
 }
 .nav--title {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  font-size: 4ch;
-  color: rgb(10, 10, 9);
+  padding: 1rem 3rem;
+  font-family: cursive;
+  font-size: 40px;
 }
 .nav--buttons {
-  border: double 2px rgb(12, 12, 12);
+  border: double 2px rgb(72, 105, 90);
+  background-color: rgba(208, 221, 203, 0.822);
 }
 .nav--buttons--button {
   padding-top: 1rem;

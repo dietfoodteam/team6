@@ -34,6 +34,7 @@
           <ClosetItem
             v-bind:item="coordinate"
             v-bind:isDelete="true"
+            v-bind:isCoordinate="true"
             v-on:click-delete-item="deleteCoordinate"
           ></ClosetItem>
         </div>
@@ -106,22 +107,26 @@ export default {
 
 <style scoped>
 .all {
+  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 10rem;
-  background-color: rgb(214, 214, 212);
+  background-image: url(../assets/clo.jpg);
+  background-size: cover;
+  /* background-position: 0px -300px; */
 }
 .all__frame {
   display: flex;
   flex-direction: column;
+  margin: 2rem;
 }
 .all__frame__selectWrapper {
   width: 10rem;
   padding: 1rem 1rem;
   margin: 0px 15px;
   margin-right: 0.5rem;
-  background-color: rgba(165, 177, 170, 0.863);
+  background-color: rgba(225, 233, 228, 0.863);
   border: 1px solid;
   border-color: rgb(33, 63, 33);
   border-radius: 10px;
@@ -139,6 +144,6 @@ export default {
   flex-wrap: wrap;
 }
 .all__frame__box__item {
-  margin: 10px;
+  margin: 15px;
 }
 </style>
